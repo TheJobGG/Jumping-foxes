@@ -1,0 +1,363 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  place-content: center;
+  counter-reset: game;
+}
+
+.phone {
+  position: relative;
+  overflow: hidden;
+  border: 8px solid black;
+  border-radius: 40px;
+  height: 600px;
+  width: 300px;
+  background-color: #ccefff;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
+.phone>.layer {
+  position: absolute;
+}
+
+.phone>.layer.ground {
+  outline: 1px solid black;
+  background-color: saddlebrown;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.layer-1 {
+  z-index: 1;
+  height: 450px;
+  width: 80px;
+  bottom: 0;
+  right: 50px;
+}
+
+.layer-2 {
+  z-index: 2;
+  height: 450px;
+  width: 80px;
+  bottom: 0;
+  left: 50px;
+}
+
+.layer-3 {
+  z-index: 3;
+  height: 450px;
+  width: 220px;
+  bottom: 0;
+  left: 50%;
+  translate: -50%;
+}
+
+.layer-4 {
+  z-index: 4;
+  height: 300px;
+  width: 80px;
+  bottom: 0;
+  left: 20px;
+}
+
+.layer-5 {
+  z-index: 5;
+  height: 300px;
+  width: 150px;
+  bottom: 0;
+  left: 0;
+}
+
+.layer-6 {
+  z-index: 6;
+  height: 200px;
+  width: 80px;
+  bottom: 0;
+  right: 20px;
+}
+
+.layer-7 {
+  z-index: 7;
+  height: 200px;
+  width: 150px;
+  bottom: 0;
+  right: 0;
+}
+
+.layer-8::before {
+  position: absolute;
+  content: "";
+  width: 100px;
+  height: 140px;
+  border-radius: 50%;
+  background-color: seagreen !important;
+  left: -15px;
+  bottom: 20px;
+}
+
+.layer-8 {
+  z-index: 8;
+  width: 150px;
+  height: 140px;
+  border-radius: 50%;
+  background-color: seagreen !important;
+  left: 50%;
+  bottom: -50px;
+  translate: -50%;
+}
+
+.layer-8::after {
+  position: absolute;
+  content: "";
+  width: 100px;
+  height: 140px;
+  border-radius: 50%;
+  background-color: seagreen !important;
+  left: 55px;
+  bottom: 5px;
+}
+
+.layer-9::before {
+  content: "";
+  position: absolute;
+  width: 75px;
+  height: 75px;
+  left: 10px;
+  bottom: 30px;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.layer-9 {
+  z-index: 9;
+  width: 75px;
+  height: 75px;
+  left: -10px;
+  bottom: 0;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.layer-9::after {
+  content: "";
+  position: absolute;
+  width: 85px;
+  height: 85px;
+  left: 30px;
+  bottom: -20px;
+  border-radius: 50%;
+  transform: skew(-10deg) rotateX(40deg);
+  background-color: white;
+}
+
+.layer-10::before {
+  content: "";
+  position: absolute;
+  width: 75px;
+  height: 75px;
+  right: 10px;
+  bottom: 30px;
+  border-radius: 50%;
+  transform: skew(10deg);
+  background-color: white;
+}
+
+.layer-10 {
+  z-index: 10;
+  width: 75px;
+  height: 75px;
+  right: -10px;
+  bottom: 0;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.layer-10::after {
+  content: "";
+  position: absolute;
+  width: 85px;
+  height: 85px;
+  right: 30px;
+  bottom: -20px;
+  border-radius: 50%;
+  transform: skew(-10deg);
+  background-color: white;
+}
+
+.target img {
+  width: 100%;
+  position: absolute;
+}
+
+.target {
+  position: absolute;
+  top: -0px;
+  width: 100%;
+  height: 50px;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-name: blink;
+}
+
+
+.layer-1>.target {
+  animation-delay: 0s;
+}
+
+.layer-2>.target {
+  animation-delay: 1s;
+}
+
+.layer-4>.target {
+  animation-delay: 1.5s;
+}
+
+.layer-6>.target {
+  animation-delay: 2.7s;
+}
+
+
+@keyframes blink {
+  0% {
+    top: 20px;
+  }
+
+  5% {
+    top: 10px;
+  }
+
+  10% {
+    top: -20px;
+  }
+
+  50% {
+    top: 20px;
+  }
+
+  80% {
+    top: -60px;
+  }
+
+  100% {
+    top: 20px;
+  }
+}
+
+@keyframes picked {
+  from {
+    top: -60px;
+  }
+
+  to {
+    top: -60px;
+  }
+}
+
+input[type=checkbox] {
+  position: absolute;
+  appearance: none;
+  cursor: pointer;
+  z-index: 1;
+  width: 100%;
+  height: 80px;
+}
+
+input[type=checkbox]:checked {
+  counter-increment: game;
+}
+
+.total-count {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.total-count::after {
+  content: counter(game);
+}
+
+.btn-restart {
+  width: 80%;
+  height: 40px;
+  position: absolute;
+  bottom: 20px;
+  right: 50%;
+  translate: 50%;
+  z-index: 7;
+  color: white;
+  background-color: orange;
+  border-radius: 10px;
+  border-style: none;
+  text-transform: uppercase;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transform: scale(0.1);
+
+}
+
+.restart {
+  animation-name: restart;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  -moz-animation-name: restart;
+  -moz-animation-duration: 1s;
+  -moz-animation-iteration-count: 1;
+  -moz-animation-fill-mode: forwards;
+  -o-animation-name: restart;
+  -o-animation-duration: 1s;
+  -o-animation-iteration-count: 1;
+  -o-animation-fill-mode: forwards;
+  -webkit-animation-name: restart;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-fill-mode: forwards;
+
+}
+
+@keyframes restart {
+  0% {
+    bottom: 20px;
+    z-index: 7;
+  }
+
+  50% {
+    bottom: 110px;
+    z-index: 7;
+  }
+
+  75% {
+    z-index: 11;
+  }
+
+  100% {
+    bottom: 20px;
+    z-index: 11;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 400px) {
+  .phone {
+    height: 100vh;
+    width: 100vw;
+    border: none;
+    border-radius: 0;
+  }
+
+  .layer-3 {
+    z-index: 3;
+    height: 450px;
+    width: 80vw;
+    bottom: 0;
+    left: 50%;
+    translate: -50%;
+  }
+}
